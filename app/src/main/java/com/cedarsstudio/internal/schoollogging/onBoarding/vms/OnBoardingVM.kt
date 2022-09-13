@@ -1,4 +1,4 @@
-package com.cedarsstudio.internal.schoollogging.onBoarding
+package com.cedarsstudio.internal.schoollogging.onBoarding.vms
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -12,12 +12,9 @@ class OnBoardingVM @Inject constructor(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _shouldGetStarted: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    val shouldGetStarted = _shouldGetStarted.asStateFlow()
-
-
-    fun setShouldGetStarted(state: Boolean){
-        _shouldGetStarted.tryEmit(state)
+    companion object {
+        private const val TAG = "ONBOARDING_VM"
     }
+
 
 }

@@ -7,6 +7,13 @@
         <entry key="..\:/_cedars/Mobile/SchoolLogging/app/src/main/res/layout/onboarding_activity.xml" value="0.2" />
         <entry key="..\:/_cedars/Mobile/SchoolLogging/app/src/main/res/layout/onboarding_item_layout.xml" value="0.171875" />
         <entry key="..\:/_cedars/Mobile/SchoolLogging/app/src/main/res/menu/menu_main.xml" value="0.16770833333333332" />
+        <entry key="..\:/src/Cedars/Mobile_Projects/SchoolLogging-App/app/src/main/res/layout/auth_activity.xml" value="0.16" />
+        <entry key="..\:/src/Cedars/Mobile_Projects/SchoolLogging-App/app/src/main/res/layout/forgot_password_otp_fragment.xml" value="0.15833333333333333" />
+        <entry key="..\:/src/Cedars/Mobile_Projects/SchoolLogging-App/app/src/main/res/layout/forgot_password_request_otp_fragment.xml" value="0.33" />
+        <entry key="..\:/src/Cedars/Mobile_Projects/SchoolLogging-App/app/src/main/res/layout/onboarding_activity.xml" value="0.15833333333333333" />
+        <entry key="..\:/src/Cedars/Mobile_Projects/SchoolLogging-App/app/src/main/res/layout/onboarding_item_layout.xml" value="0.15833333333333333" />
+        <entry key="..\:/src/Cedars/Mobile_Projects/SchoolLogging-App/app/src/main/res/layout/sign_in_fragment.xml" value="0.25" />
+        <entry key="..\:/src/Cedars/Mobile_Projects/SchoolLogging-App/app/src/main/res/layout/sign_up_fragment.xml" value="0.27717391304347827" />
       </map>
     </option>
   </component>

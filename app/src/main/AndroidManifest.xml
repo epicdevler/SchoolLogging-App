@@ -15,6 +15,9 @@
         android:theme="@style/Theme.SchoolLogging"
         tools:targetApi="33">
         <activity
+            android:name=".auth.screens.AuthActivity"
+            android:exported="false" />
+        <activity
             android:name=".onBoarding.screens.OnBoarding"
             android:exported="true"
             android:theme="@style/Theme.SchoolLogging">

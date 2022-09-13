@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.cedarsstudio.internal.schoollogging"
-        minSdk 16
+        minSdk 17
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -70,4 +70,10 @@ dependencies {
 //    DAGGER HILT
     implementation 'com.google.dagger:hilt-android:2.43.2'
     kapt 'com.google.dagger:hilt-compiler:2.43.2'
+
+//    ANIMATION
+    implementation("com.github.AtifSayings:Animatoo:1.0.1")
+
+//    OTP VIEW
+    implementation("com.github.aabhasr1:OtpView:v1.1.2-ktx")
 }

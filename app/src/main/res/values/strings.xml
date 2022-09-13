@@ -3,10 +3,15 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="get_started">Get Started</string>
-
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="submit">Submit</string>
+    <string name="forgot_password">Forgot\nPassword</string>
 
 
     <string name="onBoardingInfoPlaceHolder">Lorem ipsum dolor sit amet,
  consectetuer adipiscing elit, sed diam nonummy
  nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

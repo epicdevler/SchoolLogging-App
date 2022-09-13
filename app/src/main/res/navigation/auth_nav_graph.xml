@@ -2,6 +2,41 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/signIn">
 
+    <fragment
+        android:id="@+id/signIn"
+        android:name="com.cedarsstudio.internal.schoollogging.auth.screens.SignIn"
+        tools:layout="@layout/sign_in_fragment" >
+        <action
+            android:id="@+id/action_signIn_to_forgotPasswordRequest"
+            app:destination="@id/forgotPasswordRequest" />
+        <action
+            android:id="@+id/action_signIn_to_signUp"
+            app:destination="@id/signUp" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUp"
+        android:name="com.cedarsstudio.internal.schoollogging.auth.screens.SignUp"
+        tools:layout="@layout/sign_up_fragment" >
+        <action
+            android:id="@+id/action_signUp_to_signIn"
+            app:destination="@id/signIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotPasswordRequest"
+        android:name="com.cedarsstudio.internal.schoollogging.auth.screens.forgot_password.ForgotPasswordRequest"
+        tools:layout="@layout/forgot_password_request_otp_fragment"
+        android:label="ForgotPasswordRequest" >
+        <action
+            android:id="@+id/action_forgotPasswordRequest_to_forgotPasswordOTP"
+            app:destination="@id/forgotPasswordOTP" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotPasswordOTP"
+        tools:layout="@layout/forgot_password_otp_fragment"
+        android:name="com.cedarsstudio.internal.schoollogging.auth.screens.forgot_password.ForgotPasswordOTP"
+        android:label="ForgotPasswordOTP" />
 </navigation>
