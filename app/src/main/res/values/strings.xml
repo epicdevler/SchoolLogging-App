@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SchoolLogging</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="get_started">Get Started</string>
+
+
+
+    <string name="onBoardingInfoPlaceHolder">Lorem ipsum dolor sit amet,
+ consectetuer adipiscing elit, sed diam nonummy
+ nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad</string>
+</resources>

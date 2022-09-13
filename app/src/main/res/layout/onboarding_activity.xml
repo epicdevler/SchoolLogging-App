@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.cedarsstudio.internal.schoollogging.onBoarding.OnBoardingVM" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/onBoardingPagerContainer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/onBoarding_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/onBoarding_pager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                android:id="@+id/onBoarding_indicators"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:dotsColor="@color/blue_50"
+                app:dotsSize="10dp"
+                app:dotsSpacing="4dp"
+                app:dotsWidthFactor="2.5"
+                app:selectedDotColor="?colorPrimary" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/onBoarding_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skip"
+            app:layout_constraintBottom_toBottomOf="@id/onBoarding_next"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toTopOf="@id/onBoarding_next" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/onBoarding_next"
+            style="@style/Widget.Material3.Button.IconButton.Filled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/next_chavlet"
+            app:iconSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/onBoarding_getStarted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/get_started"
+            android:visibility="gone"
+            app:cornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/onBoarding_next"
+            app:layout_constraintEnd_toEndOf="@id/onBoarding_next"
+            app:layout_constraintTop_toTopOf="@id/onBoarding_next" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="20dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
