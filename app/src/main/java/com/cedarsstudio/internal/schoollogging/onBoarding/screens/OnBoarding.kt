@@ -58,10 +58,11 @@ class OnBoarding : AppCompatActivity() {
                 super.onPageSelected(position)
                 binding.apply {
                     onBoardingNext.visibility = if (position == 2) View.INVISIBLE else View.VISIBLE
-
+                    onBoardingSkip.visibility = if (position == 2) View.INVISIBLE else View.VISIBLE
                     onBoardingGetStarted.visibility =
                         if (position != 2) View.INVISIBLE else
                             View.VISIBLE
+
                 }
             }
         })
