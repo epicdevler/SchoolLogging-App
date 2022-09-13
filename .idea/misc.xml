@@ -4,8 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/_cedars/Mobile/SchoolLogging/app/src/main/res/layout/activity_main.xml" value="0.34" />
+        <entry key="..\:/_cedars/Mobile/SchoolLogging/app/src/main/res/layout/auth_activity.xml" value="0.16875" />
+        <entry key="..\:/_cedars/Mobile/SchoolLogging/app/src/main/res/layout/forgot_password_change_fragment.xml" value="0.16875" />
+        <entry key="..\:/_cedars/Mobile/SchoolLogging/app/src/main/res/layout/forgot_password_otp_fragment.xml" value="0.16875" />
+        <entry key="..\:/_cedars/Mobile/SchoolLogging/app/src/main/res/layout/forgot_password_request_otp_fragment.xml" value="0.16875" />
+        <entry key="..\:/_cedars/Mobile/SchoolLogging/app/src/main/res/layout/forgot_password_success_fragment.xml" value="0.16875" />
         <entry key="..\:/_cedars/Mobile/SchoolLogging/app/src/main/res/layout/onboarding_activity.xml" value="0.2" />
         <entry key="..\:/_cedars/Mobile/SchoolLogging/app/src/main/res/layout/onboarding_item_layout.xml" value="0.171875" />
+        <entry key="..\:/_cedars/Mobile/SchoolLogging/app/src/main/res/layout/sign_in_fragment.xml" value="0.1703125" />
+        <entry key="..\:/_cedars/Mobile/SchoolLogging/app/src/main/res/layout/sign_up_fragment.xml" value="0.33" />
         <entry key="..\:/_cedars/Mobile/SchoolLogging/app/src/main/res/menu/menu_main.xml" value="0.16770833333333332" />
         <entry key="..\:/src/Cedars/Mobile_Projects/SchoolLogging-App/app/src/main/res/layout/auth_activity.xml" value="0.16" />
         <entry key="..\:/src/Cedars/Mobile_Projects/SchoolLogging-App/app/src/main/res/layout/forgot_password_otp_fragment.xml" value="0.15833333333333333" />

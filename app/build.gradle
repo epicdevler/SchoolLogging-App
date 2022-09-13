@@ -76,4 +76,7 @@ dependencies {
 
 //    OTP VIEW
     implementation("com.github.aabhasr1:OtpView:v1.1.2-ktx")
+
+//    LOADING BUTTON
+//    implementation("br.com.simplepass:loading-button-android:2.2.0")
 }

@@ -30,10 +30,7 @@ class SignUp : Fragment() {
 
     private fun handleUI() {
         binding.apply {
-            authSignInAction.setOnClickListener {
-                findNavController().navigateUp()
-                Animatoo.animateSlideRight(requireContext())
-            }
+            authSignInAction.setOnClickListener { findNavController().navigateUp() }
         }
     }
 

@@ -4,4 +4,19 @@
         <!-- Customize your dark theme here. -->
         <item name="colorPrimary">@color/blue_800</item>
     </style>
+
+    <style name="IconButton" parent="Widget.Material3.Button.IconButton">
+        <item name="icon">@drawable/back_arrow</item>
+        <item name="elevation">0dp</item>
+    </style>
+    <style name="ElevatedButton" parent="Widget.Material3.Button">
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="elevation">0dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+    </style>
 </resources>

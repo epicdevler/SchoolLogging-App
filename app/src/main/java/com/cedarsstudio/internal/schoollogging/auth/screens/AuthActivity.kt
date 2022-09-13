@@ -1,11 +1,13 @@
 package com.cedarsstudio.internal.schoollogging.auth.screens
 
 import android.os.Bundle
+import android.view.View
 import android.window.OnBackInvokedDispatcher
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
+import com.cedarsstudio.internal.schoollogging.R
 import com.cedarsstudio.internal.schoollogging.databinding.AuthActivityBinding
-import com.cedarsstudio.internal.schoollogging.utils.handleBackPressed
 
 class AuthActivity : AppCompatActivity() {
     private lateinit var binding: AuthActivityBinding
@@ -15,8 +17,21 @@ class AuthActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-//        val hostFragment = supportFragmentManager.findFragmentById(R.id.auth_nav_host_fragment) as NavHostFragment
-//        val controller = hostFragment.navController
+        val hostFragment =
+            supportFragmentManager.findFragmentById(R.id.auth_nav_host_fragment) as NavHostFragment
+        val controller = hostFragment.navController
+
+        controller.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id != R.id.signIn && destination.id != R.id
+            .forgotPasswordChangeSuccess) {
+                binding.backBtn.visibility = View.VISIBLE
+                binding.backBtn.setOnClickListener {
+                    controller.navigateUp()
+                }
+            } else {
+                binding.backBtn.visibility = View.INVISIBLE
+            }
+        }
 
 
     }

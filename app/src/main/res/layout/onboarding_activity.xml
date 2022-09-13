@@ -23,7 +23,7 @@
             app:layout_constraintBottom_toTopOf="@id/onBoarding_next"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/onBoarding_skip">
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/onBoarding_pager"
@@ -47,10 +47,10 @@
             android:id="@+id/onBoarding_skip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="16dp"
             android:text="Skip"
-            app:layout_constraintBottom_toBottomOf="@id/onBoarding_next"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintTop_toTopOf="@id/onBoarding_next" />
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/onBoarding_next"

@@ -7,6 +7,7 @@
     <string name="sign_up">Sign Up</string>
     <string name="submit">Submit</string>
     <string name="forgot_password">Forgot\nPassword</string>
+    <string name="reset_password">Reset\nPassword</string>
 
 
     <string name="onBoardingInfoPlaceHolder">Lorem ipsum dolor sit amet,

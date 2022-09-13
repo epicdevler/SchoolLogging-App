@@ -35,7 +35,7 @@ class ForgotPasswordOTP : Fragment() {
     private fun handleUI() {
         binding.apply {
             authForgotSubmit.setOnClickListener {
-//                findNavController().navigate(SignInDirections.actionSignInToSignUp())
+                findNavController().navigate(ForgotPasswordOTPDirections.actionForgotPasswordOTPToForgotPasswordChange())
             }
             authForgotPasswordResendAction.setOnClickListener {
 
