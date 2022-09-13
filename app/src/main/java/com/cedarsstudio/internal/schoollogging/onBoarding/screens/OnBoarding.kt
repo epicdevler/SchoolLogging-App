@@ -47,8 +47,10 @@ class OnBoarding : AppCompatActivity() {
         observeViewPagerChange()
 
         binding.apply {
-            onBoardingNext.visibility = if(vm.shouldGetStarted.value) View.INVISIBLE else View.VISIBLE
-            onBoardingGetStarted.visibility = if(vm.shouldGetStarted.value) View.INVISIBLE else View.VISIBLE
+            onBoardingNext.visibility = if(vm.shouldGetStarted.value) View.INVISIBLE else View
+                .VISIBLE
+            onBoardingGetStarted.visibility = if(!vm.shouldGetStarted.value) View.INVISIBLE else
+                View.VISIBLE
         }
 
     }
