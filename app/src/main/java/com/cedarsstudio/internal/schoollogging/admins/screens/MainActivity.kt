@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -94,56 +95,56 @@ class MainActivity : AppCompatActivity() {
                 Box(modifier = Modifier.padding(PaddingValues(top = it.calculateTopPadding()))) {
                     NavHost(navController = navController, startDestination = Routings.HOME) {
                         composable(Routings.HOME) {
-                            Home(onNavigate = { route, up ->
-                                if (up) navController.navigateUp()
-                                else navController.navigate(route)
-                            }, navController, drawerScreenItems =
+                            Home(onNavigate = { route, up -> handleOnNavUp(navController, route, up) }, drawerScreenItems =
                             drawerScreenItems)
                         }
                         composable(Routings.ROSTER) {
                             Roster(
                                 onNavigate = { route, up ->
-                                    if (up) navController.navigateUp()
-                                    else navController.navigate(route)
+                                    handleOnNavUp(navController, route, up)
                                 },
                             )
                         }
                         composable(Routings.LIST_OF_STUDENTS) {
                             StudentList(
                                 onNavigate = { route, up ->
-                                    if (up) navController.navigateUp()
-                                    else navController.navigate(route)
-                                },
+                                    handleOnNavUp(navController, route, up)
+                                }
                             )
                         }
                         composable(Routings.CHAT_LIST) {
                             ChatList(
                                 onNavigate = { route, up ->
-                                    if (up) navController.navigateUp()
-                                    else navController.navigate(route)
+                                    handleOnNavUp(navController, route, up)
                                 },
                             )
                         }
                         composable(Routings.STUDENT_SIGN_IN) {
                             SignInStudent(
                                 onNavigate = { route, up ->
-                                    if (up) navController.navigateUp()
-                                    else navController.navigate(route)
+                                    handleOnNavUp(navController, route, up)
                                 },
                             )
                         }
                         composable(Routings.STUDENT_SIGN_OUT) {
                             SignOutStudent(
                                 onNavigate = { route, up ->
-                                    if (up) navController.navigateUp()
-                                    else navController.navigate(route)
+                                    handleOnNavUp(navController, route, up)
                                 },
                             )
                         }
                     }
                 }
             }
+        }
+    }
 
+    private fun handleOnNavUp(navController: NavHostController, route: String, up: Boolean) {
+        if (up) navController.navigateUp()
+        else navController.navigate(route){
+            popUpTo(Routings.HOME){
+                inclusive = true
+            }
         }
     }
 

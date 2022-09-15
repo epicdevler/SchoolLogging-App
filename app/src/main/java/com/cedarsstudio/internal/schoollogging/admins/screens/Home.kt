@@ -20,7 +20,6 @@ import com.cedarsstudio.internal.schoollogging.admins.utils.DrawerScreen
 @Composable
 fun Home(
     onNavigate: (route: String, up: Boolean) -> Unit,
-    navController: NavHostController,
     drawerScreenItems: List<DrawerScreen>,
 ) {
     ConstraintLayout(modifier = Modifier
