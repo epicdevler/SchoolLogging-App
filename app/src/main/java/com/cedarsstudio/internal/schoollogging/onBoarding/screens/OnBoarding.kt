@@ -49,7 +49,6 @@ class OnBoarding : AppCompatActivity() {
             lifecycleScope.launchWhenStarted {
             }
         }
-
     }
 
     private fun observeViewPagerChange() {
@@ -62,7 +61,6 @@ class OnBoarding : AppCompatActivity() {
                     onBoardingGetStarted.visibility =
                         if (position != 2) View.INVISIBLE else
                             View.VISIBLE
-
                 }
             }
         })
