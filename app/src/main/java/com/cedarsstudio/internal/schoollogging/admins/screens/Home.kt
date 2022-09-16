@@ -45,8 +45,8 @@ fun Home(
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-            horizontalArrangement = Arrangement.spacedBy(10.dp),
+            verticalArrangement = Arrangement.spacedBy(18.dp),
+            horizontalArrangement = Arrangement.spacedBy(18.dp),
             modifier = Modifier.constrainAs(gridItems) {
                 top.linkTo(username.bottom, 22.dp)
                 centerHorizontallyTo(parent)
@@ -56,7 +56,7 @@ fun Home(
             }
         ) {
             items(drawerScreenItems) { item ->
-                HomeCardItem(onClick = { /*TODO*/ }, icon = item.icon,
+                HomeCardItem(onClick = { onNavigate(item.route, false) }, icon = item.icon,
                     label = item.label)
             }
         }
@@ -81,7 +81,7 @@ private fun HomeCardItem(
             Icon(imageVector = icon, contentDescription = icon.name, modifier = Modifier.size
                 (34.dp))
             Spacer(modifier = Modifier.width(10.dp))
-            Text(text = label)
+            Text(text = label, color = MaterialTheme.colorScheme.onPrimary)
         }
     }
 }

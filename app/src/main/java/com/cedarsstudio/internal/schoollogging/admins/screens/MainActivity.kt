@@ -68,6 +68,9 @@ class MainActivity : AppCompatActivity() {
             drawerContent = {
                 DrawerContent(drawerState, coroutineScope, drawerScreenItems) { route ->
                     navController.navigate(route)
+                    coroutineScope.launch {
+                        if(drawerState.isOpen) { drawerState.close()  }
+                    }
                 }
             },
             drawerState = drawerState
@@ -99,7 +102,7 @@ class MainActivity : AppCompatActivity() {
                             drawerScreenItems)
                         }
                         composable(Routings.ROSTER) {
-                            Roster(
+                            RosterS(
                                 onNavigate = { route, up ->
                                     handleOnNavUp(navController, route, up)
                                 },
@@ -142,9 +145,7 @@ class MainActivity : AppCompatActivity() {
     private fun handleOnNavUp(navController: NavHostController, route: String, up: Boolean) {
         if (up) navController.navigateUp()
         else navController.navigate(route){
-            popUpTo(Routings.HOME){
-                inclusive = true
-            }
+            popUpTo(Routings.HOME)
         }
     }
 
@@ -238,7 +239,7 @@ class MainActivity : AppCompatActivity() {
             modifier) {
             Icon(imageVector = icon, contentDescription = icon.name)
             Spacer(modifier = Modifier.width(10.dp))
-            Text(text = label)
+            Text(text = label, color = colorScheme.onPrimary)
         }
     }
 }

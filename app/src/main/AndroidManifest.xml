@@ -20,12 +20,10 @@
             android:exported="false" />
         <activity
             android:name=".onBoarding.screens.OnBoarding"
-            android:exported="false"
-            android:theme="@style/Theme.SchoolLogging"/>
+            android:exported="false"/>
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.SchoolLogging" >
+            android:name=".admins.screens.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -3,7 +3,7 @@
     <style name="Base.Theme.SchoolLogging" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
          <item name="colorPrimary">@color/blue_800</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimaryContainer">@color/white</item>
     </style>
 
     <style name="Theme.SchoolLogging" parent="Base.Theme.SchoolLogging" />

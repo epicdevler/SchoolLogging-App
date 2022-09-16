@@ -8,7 +8,7 @@ object Routings {
     const val HOME = "HOME"
     const val ROSTER = "ROSTER"
     const val LIST_OF_STUDENTS = "LIST_OF_STUDENTS"
-    const val CHAT_LIST = "LIST_OF_STUDENTS"
+    const val CHAT_LIST = "CHAT_LIST"
     const val STUDENT_SIGN_IN = "STUDENT_SIGN_IN"
     const val STUDENT_SIGN_OUT = "STUDENT_SIGN_OUT"
 
