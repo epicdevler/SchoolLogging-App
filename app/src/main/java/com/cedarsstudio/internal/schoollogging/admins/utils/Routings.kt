@@ -13,15 +13,15 @@ object Routings {
     const val STUDENT_SIGN_OUT = "STUDENT_SIGN_OUT"
 
     val drawerRoutings = listOf(
-        DrawerScreen("Student Roster", icon = Icons.Rounded.AccountBox, route
+        DrawerScreenItem("Student Roster", icon = Icons.Rounded.AccountBox, route
         = ROSTER),
-        DrawerScreen("List of students", icon = Icons.Rounded.AccountBox, route
+        DrawerScreenItem("List of students", icon = Icons.Rounded.AccountBox, route
         = LIST_OF_STUDENTS),
-        DrawerScreen("Chat Parent", icon = Icons.Rounded.AccountBox, route
+        DrawerScreenItem("Chat Parent", icon = Icons.Rounded.AccountBox, route
         = CHAT_LIST),
-        DrawerScreen("Sign in student", icon = Icons.Rounded.AccountBox, route
+        DrawerScreenItem("Sign in student", icon = Icons.Rounded.AccountBox, route
         = STUDENT_SIGN_IN),
-        DrawerScreen("Sign out student", icon = Icons.Rounded.AccountBox, route
+        DrawerScreenItem("Sign out student", icon = Icons.Rounded.AccountBox, route
         = STUDENT_SIGN_OUT)
     )
 
