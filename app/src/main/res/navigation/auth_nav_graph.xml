@@ -7,55 +7,84 @@
 
     <fragment
         android:id="@+id/signIn"
-        android:name="com.cedarsstudio.internal.schoollogging.auth.screens.SignIn"
+        android:name="com.cedarsstudio.internal.schoollogging.presentations.auth.screens.SignIn"
         tools:layout="@layout/sign_in_fragment">
         <action
             android:id="@+id/action_signIn_to_forgotPasswordRequest"
+
+            app:enterAnim="@anim/animate_slide_in_left"
+            app:popEnterAnim="@anim/animate_slide_in_left"
+            app:popExitAnim="@anim/animate_slide_out_right"
+            app:exitAnim="@anim/animate_slide_out_right"
             app:destination="@id/forgotPasswordRequest" />
         <action
             android:id="@+id/action_signIn_to_signUp"
-            app:destination="@id/signUp" />
+            app:destination="@id/signUp"
+
+            app:enterAnim="@anim/animate_slide_in_left"
+            app:popEnterAnim="@anim/animate_slide_in_left"
+            app:popExitAnim="@anim/animate_slide_out_right"
+            app:exitAnim="@anim/animate_slide_out_right" />
     </fragment>
 
     <fragment
         android:id="@+id/signUp"
-        android:name="com.cedarsstudio.internal.schoollogging.auth.screens.SignUp"
+        android:name="com.cedarsstudio.internal.schoollogging.presentations.auth.screens.SignUp"
         tools:layout="@layout/sign_up_fragment">
         <action
             android:id="@+id/action_signUp_to_signIn"
-            app:destination="@id/signIn" />
+            app:destination="@id/signIn"
+            app:enterAnim="@anim/animate_slide_in_left"
+            app:popEnterAnim="@anim/animate_slide_in_left"
+            app:popExitAnim="@anim/animate_slide_out_right"
+            app:exitAnim="@anim/animate_slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordRequest"
-        android:name="com.cedarsstudio.internal.schoollogging.auth.screens.forgot_password.ForgotPasswordRequest"
+        android:name="com.cedarsstudio.internal.schoollogging.presentations.auth.screens.forgot_password.ForgotPasswordRequest"
         tools:layout="@layout/forgot_password_request_otp_fragment">
         <action
             android:id="@+id/action_forgotPasswordRequest_to_forgotPasswordOTP"
+
+            app:enterAnim="@anim/animate_slide_in_left"
+            app:popEnterAnim="@anim/animate_slide_in_left"
+            app:popExitAnim="@anim/animate_slide_out_right"
+            app:exitAnim="@anim/animate_slide_out_right"
             app:destination="@id/forgotPasswordOTP" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordOTP"
-        android:name="com.cedarsstudio.internal.schoollogging.auth.screens.forgot_password.ForgotPasswordOTP"
-        tools:layout="@layout/forgot_password_otp_fragment" >
+        android:name="com.cedarsstudio.internal.schoollogging.presentations.auth.screens.forgot_password.ForgotPasswordOTP"
+        tools:layout="@layout/forgot_password_otp_fragment">
         <action
             android:id="@+id/action_forgotPasswordOTP_to_forgotPasswordChange"
+            app:destination="@id/forgotPasswordChange"
+
+            app:enterAnim="@anim/animate_slide_in_left"
+            app:popEnterAnim="@anim/animate_slide_in_left"
+            app:popExitAnim="@anim/animate_slide_out_right"
+            app:exitAnim="@anim/animate_slide_out_right"
             app:popUpTo="@id/forgotPasswordRequest"
-            app:popUpToInclusive="true"
-            app:destination="@id/forgotPasswordChange" />
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordChange"
-        android:name="com.cedarsstudio.internal.schoollogging.auth.screens.forgot_password.ForgotPasswordChange"
-        tools:layout="@layout/forgot_password_change_fragment" >
+        android:name="com.cedarsstudio.internal.schoollogging.presentations.auth.screens.forgot_password.ForgotPasswordChange"
+        tools:layout="@layout/forgot_password_change_fragment">
         <action
             android:id="@+id/action_forgotPasswordChange_to_forgotPasswordChangeSuccess"
+            app:destination="@id/forgotPasswordChangeSuccess"
+
+            app:enterAnim="@anim/animate_slide_in_left"
+            app:popEnterAnim="@anim/animate_slide_in_left"
+            app:popExitAnim="@anim/animate_slide_out_right"
+            app:exitAnim="@anim/animate_slide_out_right"
             app:popUpTo="@id/forgotPasswordChange"
-            app:popUpToInclusive="true"
-            app:destination="@id/forgotPasswordChangeSuccess" />
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordChangeSuccess"
-        android:name="com.cedarsstudio.internal.schoollogging.auth.screens.forgot_password.ForgotPasswordChangeSuccess"
+        android:name="com.cedarsstudio.internal.schoollogging.presentations.auth.screens.forgot_password.ForgotPasswordChangeSuccess"
         tools:layout="@layout/forgot_password_success_fragment" />
 
 </navigation>

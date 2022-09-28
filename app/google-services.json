@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "920736471481",
+    "project_id": "schoollogging-app",
+    "storage_bucket": "schoollogging-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:920736471481:android:e56e8fc400d3451e003e68",
+        "android_client_info": {
+          "package_name": "com.cedarsstudio.internal.schoollogging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "920736471481-d14v9bm2ufsf0mp1rfq7bdlijmnrpgec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJRPOSaJE40JIp2I1Ys-qTzqjIjHL9DNE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "920736471481-d14v9bm2ufsf0mp1rfq7bdlijmnrpgec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

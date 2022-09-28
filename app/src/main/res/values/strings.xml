@@ -15,4 +15,5 @@
  nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dummy_chat_msg">%s Good afternoon sir, we\'ll like you to know that your child was not present in school today. Are you aware of this sir?</string>
 </resources>

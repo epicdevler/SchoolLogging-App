@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.cedarsstudio.internal.schoollogging.onBoarding.vms.OnBoardingVM" />
+            type="com.cedarsstudio.internal.schoollogging.presentations.onBoarding.vms.OnBoardingVM" />
     </data>
 
 
