@@ -11,11 +11,11 @@ import androidx.compose.material3.*
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
@@ -26,16 +26,31 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.cedarsstudio.internal.schoollogging.R
-import com.cedarsstudio.internal.schoollogging.presentations.admins.utils.Routings
 import com.cedarsstudio.internal.schoollogging.presentations.admins.screens.components.BackBtn
+import com.cedarsstudio.internal.schoollogging.presentations.admins.utils.Routings
+import com.cedarsstudio.internal.schoollogging.presentations.admins.vms.AuthStudentVM
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.PermissionStatus
+import com.google.accompanist.permissions.rememberPermissionState
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun AuthStudent(onNavigate: (route: String, up: Boolean) -> Unit) {
+fun AuthStudent(
+    onNavigate: (route: String, up: Boolean) -> Unit,
+    vm: AuthStudentVM,
+) {
     val attempted = rememberSaveable { mutableStateOf(false) }
     val isManual = rememberSaveable { mutableStateOf(false) }
-    val authType = AuthType.SignIn
     val studentID = rememberSaveable { mutableStateOf("") }
+    val cameraPermissionState = rememberPermissionState(
+        android.Manifest.permission.CAMERA
+    )
+    val authType = vm.authType.value
+    val uiState = vm.uiState.collectAsState().value
+
+
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
+
         val (appbar, inputOption, touch, scanBtn, changeAuthMethod) = createRefs()
 
         CenterAlignedTopAppBar(navigationIcon = { BackBtn(onClick = { onNavigate("", true) }) },
@@ -57,7 +72,9 @@ fun AuthStudent(onNavigate: (route: String, up: Boolean) -> Unit) {
         } else {
             Input(value = studentID.value,
                 onValueChange = { studentID.value = it },
-                onDone = {},
+                onDone = {
+                    vm.authStudent(studentID.value, authType)
+                },
                 modifier = Modifier.constrainAs(inputOption) {
                     top.linkTo(appbar.bottom, 24.dp)
                     centerHorizontallyTo(parent)
@@ -65,10 +82,19 @@ fun AuthStudent(onNavigate: (route: String, up: Boolean) -> Unit) {
         }
 
         ElevatedButton(onClick = {
-            onNavigate(Routings.AUTH_SCANNER, false)
-            if (!attempted.value) {
-                attempted.value = !attempted.value
+            if (!isManual.value) {
+                if (cameraPermissionState.status is PermissionStatus.Granted) {
+                    onNavigate(Routings.AUTH_SCANNER, false)
+                    if (!attempted.value) {
+                        attempted.value = !attempted.value
+                    }
+                } else {
+                    cameraPermissionState.launchPermissionRequest()
+                }
+            } else {
+                vm.authStudent(studentID.value, authType)
             }
+
         }, colors = ButtonDefaults.elevatedButtonColors(
             contentColor = colorScheme.onPrimary,
             containerColor = colorScheme.primary,
@@ -88,13 +114,13 @@ fun AuthStudent(onNavigate: (route: String, up: Boolean) -> Unit) {
                     color = colorScheme.onPrimary
                 )
             } else Text(
-                text = if (authType != AuthType.SignOut) "Sign out" else "Sign in",
+                text = if (authType == AuthType.SignOut) "Sign out" else "Sign in",
                 color = colorScheme.onPrimary
             )
         }
 
         Text(
-            text = if (isManual.value) if (authType != AuthType.SignOut) "Sign out with QR Code" else "Sign in with QR Code" else if (authType != AuthType.SignOut) "Sign out with ID" else "Sign in with ID",
+            text = if (isManual.value) if (authType == AuthType.SignOut) "Sign out with QR Code" else "Sign in with QR Code" else if (authType == AuthType.SignOut) "Sign out with ID" else "Sign in with ID",
             style = typography.labelMedium.copy(
                 color = colorScheme.primary, textDecoration = TextDecoration.Underline
             ),
@@ -109,7 +135,6 @@ fun AuthStudent(onNavigate: (route: String, up: Boolean) -> Unit) {
                     centerHorizontallyTo(scanBtn)
                 },
         )
-
     }
 }
 
@@ -128,7 +153,9 @@ fun Input(
         Text(text = "Please input student ID")
         Spacer(modifier = Modifier.height(24.dp))
         OutlinedTextField(value = value,
-            onValueChange = onValueChange,
+            onValueChange = {
+                onValueChange(it.replace(Regex("[^0-9]"), ""))
+            },
             label = { Text(text = "Student ID") },
             singleLine = true,
             maxLines = 1,
@@ -147,9 +174,6 @@ private fun QRScanner(
     modifier: Modifier = Modifier,
     onDone: (String) -> Unit,
 ) {
-
-    val isTouchOn = rememberSaveable { mutableStateOf(false) }
-
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -162,7 +186,7 @@ private fun QRScanner(
             imageVector = ImageVector.vectorResource(id = R.drawable.ic_scanner),
             contentDescription = null
         )
-        Spacer(modifier = Modifier.height(20.dp))
+        /*        Spacer(modifier = Modifier.height(20.dp))
         IconToggleButton(
             checked = isTouchOn.value, onCheckedChange = {
                 isTouchOn.value = it
@@ -174,13 +198,11 @@ private fun QRScanner(
                 imageVector = ImageVector.vectorResource(id = R.drawable.ic_touch_on),
                 contentDescription = null
             )
-        }
+        }*/
     }
-
 
 }
 
-
 enum class AuthType {
-    SignIn, SignOut
+    None, SignIn, SignOut
 }

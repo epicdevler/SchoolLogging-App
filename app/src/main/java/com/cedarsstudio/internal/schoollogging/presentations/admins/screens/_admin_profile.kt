@@ -16,12 +16,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import com.cedarsstudio.internal.schoollogging.presentations.admins.screens.components.BackBtn
 import com.cedarsstudio.internal.schoollogging.R
+import com.cedarsstudio.internal.schoollogging.presentations.admins.screens.components.BackBtn
+import com.cedarsstudio.internal.schoollogging.presentations.auth.vm.ProfileVM
 
 @Composable
 fun AdminProfile(
-    onNavigate: (route: String, up: Boolean) -> Unit
+    onNavigate: (route: String, up: Boolean) -> Unit,
+    profileVm: ProfileVM
 ) {
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
         val (appbar, details) = createRefs()
@@ -35,23 +37,23 @@ fun AdminProfile(
                 top.linkTo(parent.top)
             })
 
-        Column(modifier= Modifier.constrainAs(details){
+        Column(modifier = Modifier.constrainAs(details) {
             top.linkTo(appbar.bottom, 16.dp)
             start.linkTo(startGuide)
             end.linkTo(endGuide)
             width = Dimension.fillToConstraints
         }) {
-            AdminInfo(label = "Username", "rebaba21")
+            AdminInfo(label = "Username", "${profileVm.admin.value.name}")
             Spacer(modifier = Modifier.height(20.dp))
             AdminInfo(
                 label = "Email",
-                "rebaba21@gmail.com",
+                "${profileVm.admin.value.email}",
                 icon = ImageVector.vectorResource(id = R.drawable.mail_outline)
             )
             Spacer(modifier = Modifier.height(20.dp))
             AdminInfo(label = "Password", "1234", Icons.Rounded.Person)
             Spacer(modifier = Modifier.height(20.dp))
-            AdminInfo(label = "Admin ID", "re34b1GB234")
+            AdminInfo(label = "Admin ID", "${profileVm.admin.value.id}")
         }
     }
 }
@@ -61,11 +63,13 @@ private fun AdminInfo(
     label: String, value: String, icon: ImageVector? = null
 ) {
     Column {
-        Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier
-            .fillMaxWidth()
-            .padding(
-                PaddingValues(bottom = 10.dp)
-            )) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    PaddingValues(bottom = 10.dp)
+                )
+        ) {
             val anBuild = AnnotatedString.Builder()
             anBuild.append(AnnotatedString("$label: "))
             anBuild.append(

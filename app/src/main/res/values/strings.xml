@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SchoolLogging</string>
+    <string name="app_name">School Logging</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="get_started">Get Started</string>
@@ -16,4 +16,25 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="dummy_chat_msg">%s Good afternoon sir, we\'ll like you to know that your child was not present in school today. Are you aware of this sir?</string>
+    <string name="title_activity_admin_add_student">AdminAddStudent</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="student_details">Student Details</string>
+    <string name="create">Create</string>
+    <string-array name="genders">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string-array name="classes">
+        <item>JSS 1</item>
+        <item>JSS 2</item>
+        <item>JSS 3</item>
+        <item>SS 1</item>
+        <item>SS 2</item>
+        <item>SS 3</item>
+    </string-array>
 </resources>

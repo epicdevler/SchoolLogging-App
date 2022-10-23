@@ -1,18 +1,17 @@
 package com.cedarsstudio.internal.schoollogging.presentations.onBoarding.screens
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.cedarsstudio.internal.schoollogging.databinding.OnboardingActivityBinding
-import com.cedarsstudio.internal.schoollogging.presentations.onBoarding.vms.OnBoardingVM
 import com.cedarsstudio.internal.schoollogging.presentations.onBoarding.utils.dataSource.OnBoardingData
+import com.cedarsstudio.internal.schoollogging.presentations.onBoarding.vms.OnBoardingVM
+import com.cedarsstudio.internal.schoollogging.utils.toAdminScreen
 import com.cedarsstudio.internal.schoollogging.utils.toAuthScreen
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.*
 
 @AndroidEntryPoint
 class OnBoarding : AppCompatActivity() {
@@ -21,14 +20,12 @@ class OnBoarding : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2
     private val vm: OnBoardingVM by viewModels()
 
-
     companion object {
         private const val TAG = "ON_BOARDING"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = OnboardingActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -46,8 +43,7 @@ class OnBoarding : AppCompatActivity() {
         observeViewPagerChange()
 
         binding.apply {
-            lifecycleScope.launchWhenStarted {
-            }
+            lifecycleScope.launchWhenStarted {}
         }
     }
 
@@ -59,8 +55,7 @@ class OnBoarding : AppCompatActivity() {
                     onBoardingNext.visibility = if (position == 2) View.INVISIBLE else View.VISIBLE
                     onBoardingSkip.visibility = if (position == 2) View.INVISIBLE else View.VISIBLE
                     onBoardingGetStarted.visibility =
-                        if (position != 2) View.INVISIBLE else
-                            View.VISIBLE
+                        if (position != 2) View.INVISIBLE else View.VISIBLE
                 }
             }
         })
@@ -69,14 +64,22 @@ class OnBoarding : AppCompatActivity() {
     private fun initButtonClicks() {
         binding.apply {
             onBoardingSkip.setOnClickListener {
-                toAuthScreen()
+                toNextScreen()
             }
             onBoardingGetStarted.setOnClickListener {
-                toAuthScreen()
+                toNextScreen()
             }
             onBoardingNext.setOnClickListener {
                 moveViewPagerItem()
             }
+        }
+    }
+
+    private fun toNextScreen() {
+        if (vm.isSignedIn()) {
+            toAdminScreen(true)
+        } else {
+            toAuthScreen(true)
         }
     }
 

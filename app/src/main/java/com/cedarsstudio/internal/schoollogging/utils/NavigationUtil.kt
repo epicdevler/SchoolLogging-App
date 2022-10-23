@@ -8,23 +8,34 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.cedarsstudio.internal.schoollogging.presentations.admins.screens.MainActivity
+import com.cedarsstudio.internal.schoollogging.presentations.admins.screens.RosterActivity
+import com.cedarsstudio.internal.schoollogging.presentations.admins.screens.addStudents.AdminAddStudent
 import com.cedarsstudio.internal.schoollogging.presentations.auth.screens.AuthActivity
 
 
-fun Activity.toAuthScreen(isFinished: Boolean = false) {
+fun Activity.toAuthScreen(isFinished: Boolean = false)  =
+    navigateTo(AuthActivity::class.java, isFinished)
+
+fun Activity.toAdminAddStudentScreen(isFinished: Boolean = false) =
+    navigateTo(AdminAddStudent::class.java, isFinished)
+
+fun Fragment.toAdminScreen(isFinished: Boolean = false) {
+    requireActivity().navigateTo(MainActivity::class.java, isFinished)
+}
+
+fun Activity.navigateTo(activity: Class<*>, isFinished: Boolean = false) {
     startActivity(
-        Intent(this, AuthActivity::class.java)
+        Intent(this, activity)
     )
     if (isFinished) finish()
     Animatoo.animateSlideLeft(this)
 }
 
-fun Fragment.toAdminScreen(isFinished: Boolean = false) {
-    startActivity(
-        Intent(requireActivity(), MainActivity::class.java)
-    )
-    if (isFinished) requireActivity().finish()
-    Animatoo.animateSlideLeft(requireActivity())
+fun Activity.toAdminScreen(isFinished: Boolean = false) {
+    navigateTo(MainActivity::class.java, isFinished)
+}
+fun Activity.toRoster(isFinished: Boolean = false) {
+    navigateTo(RosterActivity::class.java, isFinished)
 }
 
 fun AppCompatActivity.handleBackPressed() {

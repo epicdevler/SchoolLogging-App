@@ -29,12 +29,14 @@ import androidx.constraintlayout.compose.Dimension
 import com.cedarsstudio.internal.schoollogging.R
 import com.cedarsstudio.internal.schoollogging.presentations.admins.utils.DrawerScreenItem
 import com.cedarsstudio.internal.schoollogging.presentations.admins.utils.Routings
+import com.cedarsstudio.internal.schoollogging.presentations.auth.vm.ProfileVM
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
 fun Home(
-    onNavigate: (route: String, up: Boolean) -> Unit
+    onNavigate: (route: String, up: Boolean) -> Unit,
+    profileVm: ProfileVM,
 ) {
     val drawerScreenItems = Routings.drawerRoutings
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -48,13 +50,6 @@ fun Home(
                     }
                 }
                 onNavigate(route, false)
-            }, logOut = {
-                coroutineScope.launch {
-                    if (drawerState.isOpen) {
-                        drawerState.close()
-                    }
-                }
-                onNavigate(Routings.LOGOUT, false)
             })
         }, drawerState = drawerState
     ) {
@@ -85,12 +80,12 @@ fun Home(
                 top.linkTo(appbar.bottom, 16.dp)
                 start.linkTo(parent.start, 16.dp)
             })
-            Text("John Doe", style = MaterialTheme.typography.titleLarge.copy(
+            Text("${profileVm.admin.value.name}", style = MaterialTheme.typography.titleLarge.copy(
                 color = MaterialTheme.colorScheme.primary
             ), modifier = Modifier.constrainAs(username) {
-                    top.linkTo(welcomeText.bottom)
-                    start.linkTo(parent.start, 16.dp)
-                })
+                top.linkTo(welcomeText.bottom)
+                start.linkTo(parent.start, 16.dp)
+            })
 
             LazyVerticalGrid(columns = GridCells.Fixed(2),
                 contentPadding = PaddingValues(16.dp),
@@ -104,9 +99,13 @@ fun Home(
                     height = Dimension.fillToConstraints
                 }) {
                 items(drawerScreenItems) { item ->
-                    HomeCardItem(onClick = { onNavigate(item.route, false) },
-                        icon = ImageVector.vectorResource(id = item.icon),
-                        label = item.label
+                    HomeCardItem(
+                        onClick = {
+                            if (item.extra.isNotEmpty()) onNavigate(
+                                "${item.route}/${item.extra}", false
+                            )
+                            else onNavigate(item.route, false)
+                        }, icon = ImageVector.vectorResource(id = item.icon), label = item.label
                     )
                 }
             }
@@ -120,7 +119,6 @@ private fun DrawerContent(
     coroutineScope: CoroutineScope,
     drawerScreenItems: List<DrawerScreenItem>,
     onNavigate: (route: String) -> Unit,
-    logOut: () -> Unit,
 ) {
     ConstraintLayout(
         modifier = Modifier
@@ -161,7 +159,12 @@ private fun DrawerContent(
         }) {
             items(drawerScreenItems) { item ->
                 DrawerItem(
-                    onClick = { onNavigate(item.route) },
+                    onClick = {
+                        if (item.extra.isNotEmpty()) onNavigate(
+                            "${item.route}/${item.extra}"
+                        )
+                        else onNavigate(item.route)
+                    },
                     active = false,
                     icon = ImageVector.vectorResource(id = item.icon),
                     label = item.label
@@ -169,7 +172,7 @@ private fun DrawerContent(
             }
         }
 
-        DrawerItem(onClick = logOut,
+        DrawerItem(onClick = { onNavigate(Routings.LOGOUT) },
             active = true,
             icon = Icons.Rounded.Close,
             label = "Logout",
@@ -195,7 +198,7 @@ private fun DrawerItem(
         shape = MaterialTheme.shapes.small,
         colors = ButtonDefaults.elevatedButtonColors(
             containerColor = if (active) colorResource(id = R.color.blue_50).copy(.5f) else Color.Transparent,
-            contentColor = Color.White
+            contentColor = MaterialTheme.colorScheme.onBackground
         ),
         elevation = ButtonDefaults.elevatedButtonElevation(
             0.dp, 0.dp, 0.dp, 0.dp
@@ -204,7 +207,7 @@ private fun DrawerItem(
     ) {
         Icon(imageVector = icon, contentDescription = icon.name)
         Spacer(modifier = Modifier.width(16.dp))
-        Text(text = label, color = MaterialTheme.colorScheme.onPrimary)
+        Text(text = label, color = MaterialTheme.colorScheme.onBackground)
     }
 }
 
@@ -230,7 +233,7 @@ private fun HomeCardItem(
                 imageVector = icon, contentDescription = icon.name, modifier = Modifier.size(34.dp)
             )
             Spacer(modifier = Modifier.width(10.dp))
-            Text(text = label, color = MaterialTheme.colorScheme.onPrimary)
+            Text(text = label, color = MaterialTheme.colorScheme.onBackground)
         }
     }
 }

@@ -50,18 +50,10 @@ class SignUp : Fragment() {
         lifecycleScope.launch {
             vm.uiState.collect { uiState ->
                 Log.e(SignIn.TAG, "initObservers: $uiState")
-                binding.apply {
-                    if (uiState.state == State.Loading) {
-                        authNameInput.isEnabled = !authNameInput.isEnabled
-                        emailInput.isEnabled = !emailInput.isEnabled
-                        authPassInput.isEnabled = !authPassInput.isEnabled
-                        authSignUp.isEnabled = !authSignUp.isEnabled
-                    } else {
-                        authNameInput.isEnabled = !authNameInput.isEnabled
-                        emailInput.isEnabled = !emailInput.isEnabled
-                        authPassInput.isEnabled = !authPassInput.isEnabled
-                        authSignUp.isEnabled = !authSignUp.isEnabled
-                    }
+                if (uiState.state == State.Loading) {
+                    responseModal.showLoader( "${uiState.msg}", false)
+                } else {
+                    responseModal.dismiss()
                 }
                 when (uiState.state) {
                     State.Success -> {

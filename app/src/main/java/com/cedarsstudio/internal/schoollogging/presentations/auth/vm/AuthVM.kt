@@ -11,7 +11,6 @@ import com.cedarsstudio.internal.schoollogging.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.trySendBlocking
-import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -56,7 +55,7 @@ class AuthVM @Inject constructor(
 
 
     fun sigIn() = viewModelScope.launch {
-        _uiState.trySendBlocking(UiState())
+        _uiState.trySendBlocking(UiState(msg = "Signing In"))
         when (val result = auth.signIn(_rememberMe, _email, _password)) {
             is Response.Success -> {
                 _uiState.trySendBlocking(
@@ -71,7 +70,7 @@ class AuthVM @Inject constructor(
     }
 
     fun sigUp() = viewModelScope.launch {
-        _uiState.trySendBlocking(UiState())
+        _uiState.trySendBlocking(UiState(msg = "Creating Account"))
         when (val result = auth.signUp(_name, _email, _password)) {
             is Response.Success -> {
                 _uiState.trySendBlocking(

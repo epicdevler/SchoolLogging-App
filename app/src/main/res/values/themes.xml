@@ -1,8 +1,8 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.SchoolLogging" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/blue_800</item>
+        <item name="colorPrimary">@color/blue_800</item>
         <item name="colorOnPrimaryContainer">@color/white</item>
     </style>
 
@@ -11,7 +11,10 @@
     <style name="IconButton" parent="Widget.Material3.Button.IconButton">
         <item name="icon">@drawable/back_arrow</item>
         <item name="elevation">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="ElevatedButton" parent="Widget.Material3.Button">
         <item name="android:insetBottom">0dp</item>
         <item name="android:insetTop">0dp</item>
@@ -22,4 +25,13 @@
         <item name="android:layout_marginTop">16dp</item>
         <item name="android:layout_marginBottom">20dp</item>
     </style>
+
+    <style name="Theme.SchoolLogging.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.SchoolLogging.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.SchoolLogging.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

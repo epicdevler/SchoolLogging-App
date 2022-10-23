@@ -2,9 +2,10 @@ package com.cedarsstudio.internal.schoollogging.presentations.modals
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.widget.ImageView
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.airbnb.lottie.LottieAnimationView
+import com.airbnb.lottie.LottieDrawable
 import com.cedarsstudio.internal.schoollogging.R
 import com.cedarsstudio.internal.schoollogging.databinding.EventResponseModalLayoutBinding
 import com.google.android.material.button.MaterialButton
@@ -50,8 +51,11 @@ class ResponseModal(context: Context) {
         action: () -> Unit = {}
     ) {
         alertDialog.setCancelable(isCancellable)
+        actionButton.visibility = View.VISIBLE
         binding.responseMsg.text = msg
-        binding.responseImg.setAnimation(if (isSuccess) R.raw.success else R.raw.error)
+        binding.responseImg.repeatCount = 0
+        val raw = if (isSuccess) R.raw.success else R.raw.error
+        binding.responseImg.setAnimation(raw)
         if (!isSuccess) binding.responseAction.text = "Seen"
         alertDialog.show()
         binding.responseAction.setOnClickListener {
@@ -60,8 +64,23 @@ class ResponseModal(context: Context) {
         }
     }
 
-    fun dismiss() {
-        alertDialog.dismiss()
+    fun showLoader(msg: String = "Loading", isCancellable: Boolean = false) {
+        alertDialog.setCancelable(isCancellable)
+        binding.apply {
+            actionButton.visibility = View.GONE
+            infoText.text = msg
+            binding.responseImg.apply {
+                repeatMode = LottieDrawable.RESTART
+                this.repeatCount = LottieDrawable.INFINITE
+                setAnimation(R.raw.loader_one)
+            }
+        }
+        alertDialog.show()
     }
 
+    fun dismiss() {
+        binding.responseImg.cancelAnimation()
+        alertDialog.dismiss()
+        alertDialog.cancel()
+    }
 }

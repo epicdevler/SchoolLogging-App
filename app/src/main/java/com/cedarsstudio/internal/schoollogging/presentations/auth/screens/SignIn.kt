@@ -33,7 +33,6 @@ class SignIn : Fragment() {
         get() = _binding!!
     private val vm: AuthVM by viewModels()
     private lateinit var responseModal: ResponseModal
-    private lateinit var loaderModal: ResponseModal
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -49,7 +48,6 @@ class SignIn : Fragment() {
 
     private fun initUi() {
         responseModal = ResponseModal(requireActivity())
-        loaderModal = ResponseModal(requireActivity())
         binding.apply {
             emailInput.addTextChangedListener {
                 vm._email = it.toString()
@@ -68,16 +66,10 @@ class SignIn : Fragment() {
         lifecycleScope.launch {
             vm.uiState.collect { uiState ->
                 Log.e(TAG, "initObservers: $uiState")
-                binding.apply {
-                    if (uiState.state == Loading) {
-                        emailInput.isEnabled = !emailInput.isEnabled
-                        passInput.isEnabled = !passInput.isEnabled
-                        authSignIn.isEnabled = !authSignIn.isEnabled
-                    } else {
-                        emailInput.isEnabled = !emailInput.isEnabled
-                        passInput.isEnabled = !passInput.isEnabled
-                        authSignIn.isEnabled = !authSignIn.isEnabled
-                    }
+                if (uiState.state == State.Loading) {
+                    responseModal.showLoader( "${uiState.msg}", false)
+                } else {
+                    responseModal.dismiss()
                 }
                 when (uiState.state) {
                     Success -> {
@@ -118,7 +110,11 @@ class SignIn : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        responseModal.dismiss()
+        try{
+            responseModal.dismiss()
+        }catch (e: Exception){
+
+        }
     }
 
 
